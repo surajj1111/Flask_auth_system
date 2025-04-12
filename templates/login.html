@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login Page</title>
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-dark text-white">
+    <div class="card p-4 shadow-lg;">
+        
+        <!-- ✅ Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="text-danger">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <h2 class="text-center mb-3">Login</h2>
+        
+        <form method="post">
+            {{ form.hidden_tag() }}
+            
+            <!-- ✅ Email -->
+            <div class="form-floating mb-3">
+                {{ form.email(class="form-control", id="floatingEmail", placeholder="name@example.com") }}
+                <label for="floatingEmail">Email address</label>
+            </div>
+
+            <!-- ✅ Password -->
+            <div class="form-floating mb-3">
+                {{ form.password(class="form-control", id="floatingPassword", placeholder="Password") }}
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <!-- ✅ Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+
+            <!-- 🔗 Register Link -->
+            <p class="text-center mt-3">
+                Don't have an account? <a href="{{ url_for('register') }}" class="text-decoration-none text-primary">Sign Up</a>
+            </p>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
